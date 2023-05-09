@@ -13,69 +13,25 @@
 </head>
 
 <body class="container">
-    <h1 class="mt-5">MiniChat</h1>
+    <h1 class="mt-5">Acceso denegado</h1>
     <hr />
-
-    <form action="" id="miFormulario">
-        <div class="row">
-            <div class="col-8">
-                <input type="text" id="txtMensaje" placeholder="Mensaje" class="form-control" />
-            </div>
-
-            <div class="col-4">
-                <button type="submit" class="btn btn-primary" id="btnEnviar">
-                    Enviar
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <div class="row">
-        <div class="col">
-            <ul id="misMensajes" class="mt-2">
-                <!-- <li>Mensaje 1</li>
-                <li>Mensaje 2</li>
-                <li>Mensaje 3</li> -->
-
-            </ul>
-        </div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"
         integrity="sha512-xbQU0+iHqhVt7VIXi6vBJKPh3IQBF5B84sSHdjKiSccyX/1ZI7Vnkt2/8y8uruj63/DVmCxfUNohPNruthTEQA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        // const socket = io("http://localhost:8080");
-        const socket = io("https://01-socket-server-basic-gules.vercel.app/");
-        // const socket = io("https://react-socket-server-dmp.herokuapp.com/");
-        // Referencias a los elementos del DOM
-        // Referencia al formulario
-        const miFormulario = document.querySelector("#miFormulario");
-        // Referencia a la lista de mensajes
-        const misMensajes = document.querySelector("#misMensajes");
-        // Referencia al input del mensaje
-        const txtMensaje = document.querySelector("#txtMensaje");
-        // Referencia al boton de enviar
-        const btnEnviar = document.querySelector("#btnEnviar");
-
+        const socket = io("http://localhost:8080");
         // Eventos
-        miFormulario.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const nuevoMensaje = txtMensaje.value
-            // console.log(txtMensaje.value);
-            socket.emit("mensaje-cliente", {
-                texto: nuevoMensaje,
-            });
-            
-        });
+        // socket.on("connect", () => {
+        //     // callback a ejecutar cuando el cliente se conecte al servidor
+        //     console.log("Conectado");
+        // });
+        
 
         socket.on("mensaje-from-server", (data) => {
-            // console.log(data);
-            const nuevoMensaje = document.createElement("li");
-            nuevoMensaje.innerText = data.texto;
-            misMensajes.appendChild(nuevoMensaje);
+            // callback a ejecutar cuando el servidor emita el evento "mensaje-from-server"
+            console.log(data);
         });
     </script>
 </body>
