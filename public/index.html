@@ -21,7 +21,9 @@
             </div>
 
             <div class="col-4">
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary" id="btnEnviar">
+                    Enviar
+                </button>
             </div>
         </div>
     </form>
@@ -29,10 +31,10 @@
     <div class="row">
         <div class="col">
             <ul id="misMensajes" class="mt-2">
-                <li>Hola</li>
-                <li>Que tal</li>
-                <li>Todo Bien</li>
-                <li>Adios</li>
+                <!-- <li>Mensaje 1</li>
+                <li>Mensaje 2</li>
+                <li>Mensaje 3</li> -->
+
             </ul>
         </div>
     </div>
@@ -49,18 +51,40 @@
         const miFormulario = document.querySelector("#miFormulario");
         // Referencia a la lista de mensajes
         const misMensajes = document.querySelector("#misMensajes");
+        // Referencia al input del mensaje
+        const txtMensaje = document.querySelector("#txtMensaje");
+        // Referencia al boton de enviar
+        const btnEnviar = document.querySelector("#btnEnviar");
 
+        // Eventos
+        miFormulario.addEventListener("submit", (e) => {
+            e.preventDefault();
 
-        socket.on("mensaje-bienvenida", (data) => {
-            console.log(data);
+            const nuevoMensaje = txtMensaje.value
+            // console.log(txtMensaje.value);
+            socket.emit("mensaje-cliente", {
+                texto: nuevoMensaje,
+            });
+            
         });
 
-        // setTimeout(() => {
-        //     socket.emit("mensaje-cliente", {
-        //         nombre: "Daniel",
-        //         mensaje: "Hola, soy Daniel",
-        //     });
-        // }, 2000);
+        socket.on("mensaje-from-server", (data) => {
+            // console.log(data);
+            const nuevoMensaje = document.createElement("li");
+            nuevoMensaje.innerText = data.texto;
+            misMensajes.appendChild(nuevoMensaje);
+        });
+
+      // socket.on("mensaje-bienvenida", (data) => {
+      //     console.log(data);
+      // });
+
+      // setTimeout(() => {
+      //     socket.emit("mensaje-cliente", {
+      //         nombre: "Daniel",
+      //         mensaje: "Hola, soy Daniel",
+      //     });
+      // }, 2000);
     </script>
 </body>
 

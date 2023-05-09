@@ -15,14 +15,16 @@ io.on('connection', (socket) => {
     // console.log('Cliente conectado!');
     // console.log(socket.id);
 
-    socket.emit('mensaje-bienvenida', {
-        msg: 'Bienvenido al server',
-        fecha: new Date()
-    });
+    // socket.emit('mensaje-bienvenida', {
+    //     msg: 'Bienvenido al server',
+    //     fecha: new Date()
+    // });
 
     // Escuchar evento del cliente
     socket.on('mensaje-cliente', (data) => {
         console.log(data);
+
+        io.emit('mensaje-from-server', data)
     });
 
 });
