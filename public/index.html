@@ -47,8 +47,8 @@
 
     <script>
         // const socket = io("http://localhost:8080");
-        const socket = io("https://01-socket-server-basic-gules.vercel.app/");
-        // const socket = io("https://react-socket-server-dmp.herokuapp.com/");
+        // const socket = io("https://01-socket-server-basic-gules.vercel.app/");
+        const socket = io("https://react-socket-server-dmp.herokuapp.com/");
         // Referencias a los elementos del DOM
         // Referencia al formulario
         const miFormulario = document.querySelector("#miFormulario");
@@ -77,17 +77,6 @@
             nuevoMensaje.innerText = data.texto;
             misMensajes.appendChild(nuevoMensaje);
         });
-
-      // socket.on("mensaje-bienvenida", (data) => {
-      //     console.log(data);
-      // });
-
-      // setTimeout(() => {
-      //     socket.emit("mensaje-cliente", {
-      //         nombre: "Daniel",
-      //         mensaje: "Hola, soy Daniel",
-      //     });
-      // }, 2000);
     </script>
 </body>
 
