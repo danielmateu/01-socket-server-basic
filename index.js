@@ -20,6 +20,11 @@ io.on('connection', (socket) => {
         fecha: new Date()
     });
 
+    // Escuchar evento del cliente
+    socket.on('mensaje-cliente', (data) => {
+        console.log(data);
+    });
+
 });
 
 server.listen(8080, () => {
